@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Health Care</string>
+    <string name="find_doctor">ابحث عن طبيبك</string>
+    <string name="welcome">مرحبا :</string>
+    <string name="select_speciality">اختر التخصص</string>
+    <string name="select_state">اختر المحافظة</string>
+    <string name="select_area">اختر المنطقة</string>
+    <string name="select_insurance">اختر التامين</string>
+    <string name="select_gender">الجنس</string>
+    <string name="select_lang">اختر اللغة</string>
+
+    <!--  Settings data  -->
+    <string name="action_settings">الإعدادات</string>
+    <!--  Settings Preferences Values -->
+    <string name="pref_language_key" translatable="false">language</string>
+    <string name="pref_language_label">اختر اللغة</string>
+    <string name="pref_language_arabic_label">العربية</string>
+    <string name="pref_language_english_label">الإنجليزية</string>
+    <string name="pref_language_arabic_value" translatable="false">ar_EG</string>
+    <string name="pref_language_english_value" translatable="false">en_US</string>
+
+    //for list show doctors
+    <string name="speciality_item">التخصص</string>
+    <string name="state_item">Stat</string>
+    <string name="insurance_item">Insurance</string>
+
+
+</resources>
