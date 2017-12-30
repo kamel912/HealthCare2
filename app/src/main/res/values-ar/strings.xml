@@ -12,16 +12,13 @@
     <!--  Settings data  -->
     <string name="action_settings">الإعدادات</string>
     <!--  Settings Preferences Values -->
-    <string name="pref_language_key" translatable="false">language</string>
-    <string name="pref_language_label">اختر اللغة</string>
-    <string name="pref_language_arabic_label">العربية</string>
-    <string name="pref_language_english_label">الإنجليزية</string>
-    <string name="pref_language_arabic_value" translatable="false">ar_EG</string>
-    <string name="pref_language_english_value" translatable="false">en_US</string>
+    <string name="preferences_language_label">اللغة</string>
+    <string name="preferences_language_arabic_label">العربية</string>
+    <string name="preferences_language_english_label">الإنجليزية</string>
 
     //for list show doctors
     <string name="speciality_item">التخصص</string>
-    <string name="state_item">Stat</string>
+    <string name="state_item">State</string>
     <string name="insurance_item">Insurance</string>
 
 

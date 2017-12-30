@@ -11,7 +11,6 @@ import com.teamvii.healthcare.R;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.StringTokenizer;
 
 import static com.teamvii.healthcare.data.HealthCareContract.TABLES_COLUMNS;
 import static com.teamvii.healthcare.data.HealthCareContract.TABLES_NAMES;
@@ -74,7 +73,7 @@ public class HealthCareDbHelper extends SQLiteOpenHelper {
     public void onConfigure(SQLiteDatabase sqLiteDatabase) {
         super.onConfigure(sqLiteDatabase);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mCONTEXT);
-        String localeString = sharedPreferences.getString("language", mCONTEXT.getString(R.string.pref_language_arabic_value));
+        String localeString = sharedPreferences.getString("language", mCONTEXT.getString(R.string.preferences_language_arabic_value));
         String[] finalLocaleString = localeString.split("_");
         Locale locale = new Locale(finalLocaleString[0],finalLocaleString[1]);
         sqLiteDatabase.setLocale(locale);

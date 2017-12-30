@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="preferences_language_key" translatable="false">language</string>
+    <string name="preferences_language_arabic_value" translatable="false">ar</string>
+    <string name="preferences_language_english_value" translatable="false">en</string>
+</resources>

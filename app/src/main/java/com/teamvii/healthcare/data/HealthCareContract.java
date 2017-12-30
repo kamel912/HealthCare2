@@ -20,7 +20,7 @@ public class HealthCareContract {
     public static final String PATH_INSURANCE = "insurances";
     public static final String PATH_LANGUAGE = "languages";
     public static final String PATH_SPECIALITY = "specialities";
-    public static final String PATH_STATE = "state";
+    public static final String PATH_STATE = "states";
     public static final String URL_SYNC_AUTHORITY       = "http://devsinai.com/healthcare/sync/";
     public static final String URL_SYNC_AREA            = URL_SYNC_AUTHORITY + "areas.php";
     public static final String URL_SYNC_GENDER          = URL_SYNC_AUTHORITY + "genders.php";
