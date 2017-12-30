@@ -21,6 +21,10 @@ public class HealthCareContract {
     public static final String PATH_LANGUAGE = "languages";
     public static final String PATH_SPECIALITY = "specialities";
     public static final String PATH_STATE = "states";
+
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_NAME = "name_";
+
     public static final String URL_SYNC_AUTHORITY       = "http://devsinai.com/healthcare/sync/";
     public static final String URL_SYNC_AREA            = URL_SYNC_AUTHORITY + "areas.php";
     public static final String URL_SYNC_GENDER          = URL_SYNC_AUTHORITY + "genders.php";
@@ -67,9 +71,9 @@ public class HealthCareContract {
                 .appendPath(PATH_AREA)
                 .build();
         public static final String TABLE_NAME = "areas";
-        public static final String COLUMN_AREA_ID = "id";
-        public static final String COLUMN_AREA_NAME_EN = "name_en";
-        public static final String COLUMN_AREA_NAME_AR = "name_ar";
+        public static final String COLUMN_AREA_ID = COLUMN_ID;
+        public static final String COLUMN_AREA_NAME_EN = COLUMN_NAME + "en";
+        public static final String COLUMN_AREA_NAME_AR = COLUMN_NAME + "ar";
         public static final List<String> AREAS_TABLE_COLUMNS = getColumns(
                 COLUMN_AREA_ID,
                 COLUMN_AREA_NAME_EN,
@@ -82,9 +86,9 @@ public class HealthCareContract {
                 .appendPath(PATH_GENDER)
                 .build();
         public static final String TABLE_NAME = "genders";
-        public static final String COLUMN_GENDER_ID = "id";
-        public static final String COLUMN_GENDER_NAME_EN = "name_en";
-        public static final String COLUMN_GENDER_NAME_AR = "name_ar";
+        public static final String COLUMN_GENDER_ID = COLUMN_ID;
+        public static final String COLUMN_GENDER_NAME_EN = COLUMN_NAME + "en";
+        public static final String COLUMN_GENDER_NAME_AR = COLUMN_NAME + "ar";
         public static final List<String> GENDERS_TABLE_COLUMNS = getColumns(
                 COLUMN_GENDER_ID,
                 COLUMN_GENDER_NAME_EN,
@@ -97,9 +101,9 @@ public class HealthCareContract {
                 .appendPath(PATH_INSURANCE)
                 .build();
         public static final String TABLE_NAME = "insurances";
-        public static final String COLUMN_INSURANCE_ID = "id";
-        public static final String COLUMN_INSURANCE_NAME_EN = "name_en";
-        public static final String COLUMN_INSURANCE_NAME_AR = "name_ar";
+        public static final String COLUMN_INSURANCE_ID = COLUMN_ID;
+        public static final String COLUMN_INSURANCE_NAME_EN = COLUMN_NAME + "en";
+        public static final String COLUMN_INSURANCE_NAME_AR = COLUMN_NAME + "ar";
         public static final List<String> INSURANCES_TABLE_COLUMNS = getColumns(
                 COLUMN_INSURANCE_ID,
                 COLUMN_INSURANCE_NAME_EN,
@@ -112,9 +116,9 @@ public class HealthCareContract {
                 .appendPath(PATH_LANGUAGE)
                 .build();
         public static final String TABLE_NAME = "languages";
-        public static final String COLUMN_LANGUAGE_ID = "id";
-        public static final String COLUMN_LANGUAGE_NAME_EN = "name_en";
-        public static final String COLUMN_LANGUAGE_NAME_AR = "name_ar";
+        public static final String COLUMN_LANGUAGE_ID = COLUMN_ID;
+        public static final String COLUMN_LANGUAGE_NAME_EN = COLUMN_NAME + "en";
+        public static final String COLUMN_LANGUAGE_NAME_AR = COLUMN_NAME + "ar";
         public static final List<String> LANGUAGES_TABLE_COLUMNS = getColumns(
                 COLUMN_LANGUAGE_ID,
                 COLUMN_LANGUAGE_NAME_EN,
@@ -127,9 +131,9 @@ public class HealthCareContract {
                 .appendPath(PATH_SPECIALITY)
                 .build();
         public static final String TABLE_NAME = "specialities";
-        public static final String COLUMN_SPECIALITY_ID = "id";
-        public static final String COLUMN_SPECIALITY_NAME_EN = "name_en";
-        public static final String COLUMN_SPECIALITY_NAME_AR = "name_ar";
+        public static final String COLUMN_SPECIALITY_ID = COLUMN_ID;
+        public static final String COLUMN_SPECIALITY_NAME_EN = COLUMN_NAME + "en";
+        public static final String COLUMN_SPECIALITY_NAME_AR = COLUMN_NAME + "ar";
         public static final List<String> SPECIALITIES_TABLE_COLUMNS = getColumns(
                 COLUMN_SPECIALITY_ID,
                 COLUMN_SPECIALITY_NAME_EN,
@@ -142,9 +146,9 @@ public class HealthCareContract {
                 .appendPath(PATH_STATE)
                 .build();
         public static final String TABLE_NAME = "states";
-        public static final String COLUMN_STATE_ID = "id";
-        public static final String COLUMN_STATE_NAME_EN = "name_en";
-        public static final String COLUMN_STATE_NAME_AR = "name_ar";
+        public static final String COLUMN_STATE_ID = COLUMN_ID;
+        public static final String COLUMN_STATE_NAME_EN = COLUMN_NAME + "en";
+        public static final String COLUMN_STATE_NAME_AR = COLUMN_NAME + "ar";
         public static final List<String> STATES_TABLE_COLUMNS = getColumns(
                 COLUMN_STATE_ID,
                 COLUMN_STATE_NAME_EN,

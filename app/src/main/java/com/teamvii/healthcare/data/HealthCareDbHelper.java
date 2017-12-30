@@ -72,11 +72,6 @@ public class HealthCareDbHelper extends SQLiteOpenHelper {
     @Override
     public void onConfigure(SQLiteDatabase sqLiteDatabase) {
         super.onConfigure(sqLiteDatabase);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mCONTEXT);
-        String localeString = sharedPreferences.getString("language", mCONTEXT.getString(R.string.preferences_language_arabic_value));
-        String[] finalLocaleString = localeString.split("_");
-        Locale locale = new Locale(finalLocaleString[0],finalLocaleString[1]);
-        sqLiteDatabase.setLocale(locale);
     }
 
 }

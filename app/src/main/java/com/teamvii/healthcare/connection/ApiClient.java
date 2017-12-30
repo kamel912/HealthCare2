@@ -1,7 +1,11 @@
 package com.teamvii.healthcare.connection;
 
+import android.content.Context;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.teamvii.healthcare.utils.ActivityManager;
+import com.teamvii.healthcare.utils.LocaleHelper;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -11,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ApiClient {
+
     private static final String BASE_URL = "http://devsinai.com/healthcare/";
     //    private static final String BASE_URL = "http://10.0.0.2/ayokhedma/";
     private static Gson gson = new GsonBuilder()
@@ -18,10 +23,10 @@ public class ApiClient {
             .create();
     private static Retrofit retrofit;
 
-    public static Retrofit getApiClient() {
+    public static Retrofit getApiClient(String language) {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder().
-                    baseUrl( BASE_URL ).
+                    baseUrl( BASE_URL + language + "/").
                     addConverterFactory( GsonConverterFactory.create( gson ) ).
                     build();
         }

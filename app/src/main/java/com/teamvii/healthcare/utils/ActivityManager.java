@@ -9,7 +9,8 @@ import android.support.v7.app.AppCompatActivity;
  */
 
 public class ActivityManager extends AppCompatActivity {
-    private String defaultLanguage;
+
+    public String defaultLanguage;
 
     @Override
     protected void attachBaseContext(Context newBase) {

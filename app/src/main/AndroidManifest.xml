@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.teamvii.healthcare">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".utils.HealthCareApp">
+
         <activity android:name=".ui.MainActivity"
             android:launchMode="singleTop">
             <intent-filter>
@@ -29,10 +31,10 @@
 
         <activity android:name=".ui.SettingsActivity" />
         <activity android:name=".ui.FindDoctorActivity"
-            android:parentActivityName="ui.MainActivity">
+            android:parentActivityName=".ui.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ui.MainActivity" />
+                android:value=".ui.MainActivity"/>
         </activity>
     </application>
 

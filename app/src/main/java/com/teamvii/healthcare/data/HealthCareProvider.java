@@ -10,9 +10,8 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import java.util.Locale;
-
 import static com.teamvii.healthcare.data.HealthCareContract.AreasEntry;
+import static com.teamvii.healthcare.data.HealthCareContract.COLUMN_ID;
 import static com.teamvii.healthcare.data.HealthCareContract.CONTENT_AUTHORITY;
 import static com.teamvii.healthcare.data.HealthCareContract.GendersEntry;
 import static com.teamvii.healthcare.data.HealthCareContract.InsurancesEntry;
@@ -87,29 +86,29 @@ public class HealthCareProvider extends ContentProvider {
 
         switch (match) {
             case CODE_AREA:
-                return tableBulkSelect(AreasEntry.TABLE_NAME, AreasEntry.COLUMN_AREA_ID, uri);
+                return tableBulkSelect(AreasEntry.TABLE_NAME, uri, projection);
             case CODE_AREA_WITH_ID:
-                return tableRowSelect(AreasEntry.TABLE_NAME, uri);
+                return tableRowSelect(AreasEntry.TABLE_NAME, uri, projection, selections);
             case CODE_GENDER:
-                return tableBulkSelect(GendersEntry.TABLE_NAME, GendersEntry.COLUMN_GENDER_ID, uri);
+                return tableBulkSelect(GendersEntry.TABLE_NAME, uri, projection);
             case CODE_GENDER_WITH_ID:
-                return tableRowSelect(GendersEntry.TABLE_NAME, uri);
+                return tableRowSelect(GendersEntry.TABLE_NAME, uri, projection, selections);
             case CODE_INSURANCE:
-                return tableBulkSelect(InsurancesEntry.TABLE_NAME, InsurancesEntry.COLUMN_INSURANCE_ID, uri);
+                return tableBulkSelect(InsurancesEntry.TABLE_NAME, uri, projection);
             case CODE_INSURANCE_WITH_ID:
-                return tableRowSelect(InsurancesEntry.TABLE_NAME, uri);
+                return tableRowSelect(InsurancesEntry.TABLE_NAME, uri, projection, selections);
             case CODE_LANGUAGE:
-                return tableBulkSelect(LanguagesEntry.TABLE_NAME, LanguagesEntry.COLUMN_LANGUAGE_ID, uri);
+                return tableBulkSelect(LanguagesEntry.TABLE_NAME, uri, projection);
             case CODE_LANGUAGE_WITH_ID:
-                return tableRowSelect(LanguagesEntry.TABLE_NAME, uri);
+                return tableRowSelect(LanguagesEntry.TABLE_NAME, uri, projection, selections);
             case CODE_SPECIALITY:
-                return tableBulkSelect(SpecialitiesEntry.TABLE_NAME, SpecialitiesEntry.COLUMN_SPECIALITY_ID, uri);
+                return tableBulkSelect(SpecialitiesEntry.TABLE_NAME, uri, projection);
             case CODE_SPECIALITY_WITH_ID:
-                return tableRowSelect(SpecialitiesEntry.TABLE_NAME, uri);
+                return tableRowSelect(SpecialitiesEntry.TABLE_NAME, uri, projection, selections);
             case CODE_STATE:
-                return tableBulkSelect(StatesEntry.TABLE_NAME, StatesEntry.COLUMN_STATE_ID, uri);
+                return tableBulkSelect(StatesEntry.TABLE_NAME, uri, projection);
             case CODE_STATE_WITH_ID:
-                return tableRowSelect(StatesEntry.TABLE_NAME, uri);
+                return tableRowSelect(StatesEntry.TABLE_NAME, uri, projection, selections);
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
@@ -188,17 +187,13 @@ public class HealthCareProvider extends ContentProvider {
         throw new RuntimeException("We are not implementing update in HealthCare");
     }
 
-    private Cursor tableBulkSelect(String TABLE_NAME, String ID_COLUMN, Uri uri) {
+    private Cursor tableBulkSelect(String TABLE_NAME, Uri uri, String[] columns) {
         SQLiteDatabase sqLiteDatabase = mDbHelper.getReadableDatabase();
         Cursor mCursor;
-        String[] mColumns = new String[]{
-                "id",
-                "name_" + Locale.getDefault().getLanguage()
-        };
-        String mSortOrder = ID_COLUMN + " ASC";
+        String mSortOrder = COLUMN_ID + " ASC";
         mCursor = sqLiteDatabase.query(
                 TABLE_NAME,
-                mColumns,
+                columns,
                 null,
                 null,
                 null,
@@ -208,21 +203,16 @@ public class HealthCareProvider extends ContentProvider {
         return mCursor;
     }
 
-    private Cursor tableRowSelect(String TABLE_NAME, Uri uri) {
+    private Cursor tableRowSelect(String TABLE_NAME, Uri uri, String[] columns, String selection) {
         SQLiteDatabase sqLiteDatabase = mDbHelper.getReadableDatabase();
         Cursor mCursor;
-        String id;
-        String[] mSelectionArgs,
-                mColumns = new String[]{
-                        "id",
-                        "name_" + Locale.getDefault().getLanguage()
-                };
-        id = uri.getPathSegments().get(1);
+        String[] mSelectionArgs;
+        String id = uri.getPathSegments().get(1);
         mSelectionArgs = new String[]{id};
         mCursor = sqLiteDatabase.query(
                 TABLE_NAME,
-                mColumns,
-                "id=?",
+                columns,
+                selection + "=?",
                 mSelectionArgs,
                 null,
                 null,

@@ -15,6 +15,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
 import static com.teamvii.healthcare.data.HealthCareContract.AreasEntry;
 import static com.teamvii.healthcare.data.HealthCareContract.GendersEntry;
 import static com.teamvii.healthcare.data.HealthCareContract.InsurancesEntry;
@@ -62,9 +64,7 @@ public class HealthCareDataSync {
                                     jsonArray,
                                     AreasEntry.CONTENT_URI,
                                     AreasEntry.TABLE_NAME,
-                                    AreasEntry.COLUMN_AREA_ID,
-                                    AreasEntry.COLUMN_AREA_NAME_EN,
-                                    AreasEntry.COLUMN_AREA_NAME_AR
+                                    AreasEntry.AREAS_TABLE_COLUMNS
                             );
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -73,7 +73,6 @@ public class HealthCareDataSync {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "message :" + error);
                 Log.e(TAG, "message :" + error);
             }
         });
@@ -92,9 +91,7 @@ public class HealthCareDataSync {
                                     jsonArray,
                                     GendersEntry.CONTENT_URI,
                                     GendersEntry.TABLE_NAME,
-                                    GendersEntry.COLUMN_GENDER_ID,
-                                    GendersEntry.COLUMN_GENDER_NAME_EN,
-                                    GendersEntry.COLUMN_GENDER_NAME_AR
+                                    GendersEntry.GENDERS_TABLE_COLUMNS
                             );
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -121,9 +118,7 @@ public class HealthCareDataSync {
                                     jsonArray,
                                     InsurancesEntry.CONTENT_URI,
                                     InsurancesEntry.TABLE_NAME,
-                                    InsurancesEntry.COLUMN_INSURANCE_ID,
-                                    InsurancesEntry.COLUMN_INSURANCE_NAME_EN,
-                                    InsurancesEntry.COLUMN_INSURANCE_NAME_AR
+                                    InsurancesEntry.INSURANCES_TABLE_COLUMNS
                             );
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -150,9 +145,7 @@ public class HealthCareDataSync {
                                     jsonArray,
                                     LanguagesEntry.CONTENT_URI,
                                     LanguagesEntry.TABLE_NAME,
-                                    LanguagesEntry.COLUMN_LANGUAGE_ID,
-                                    LanguagesEntry.COLUMN_LANGUAGE_NAME_EN,
-                                    LanguagesEntry.COLUMN_LANGUAGE_NAME_AR
+                                    LanguagesEntry.LANGUAGES_TABLE_COLUMNS
                             );
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -179,9 +172,7 @@ public class HealthCareDataSync {
                                     jsonArray,
                                     SpecialitiesEntry.CONTENT_URI,
                                     SpecialitiesEntry.TABLE_NAME,
-                                    SpecialitiesEntry.COLUMN_SPECIALITY_ID,
-                                    SpecialitiesEntry.COLUMN_SPECIALITY_NAME_EN,
-                                    SpecialitiesEntry.COLUMN_SPECIALITY_NAME_AR
+                                    SpecialitiesEntry.SPECIALITIES_TABLE_COLUMNS
                             );
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -208,9 +199,7 @@ public class HealthCareDataSync {
                                     jsonArray,
                                     StatesEntry.CONTENT_URI,
                                     StatesEntry.TABLE_NAME,
-                                    StatesEntry.COLUMN_STATE_ID,
-                                    StatesEntry.COLUMN_STATE_NAME_EN,
-                                    StatesEntry.COLUMN_STATE_NAME_AR
+                                    StatesEntry.STATES_TABLE_COLUMNS
                             );
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -226,7 +215,7 @@ public class HealthCareDataSync {
     }
 
     // Parse the received data and put it in database
-    public static void parseInsertData(JSONArray array, Uri CONTENT_URI, String TABLE_NAME, String COLUMN_ID, String COLUMN_NAME_EN, String COLUMN_NAME_AR) {
+    public static void parseInsertData(JSONArray array, Uri CONTENT_URI, String TABLE_NAME, List<String> COLUMNS) {
         ContentValues[] values = new ContentValues[array.length()];
         int numRowsInserted = 0;
         for (int i = 0; i < array.length(); i++) {
@@ -234,23 +223,24 @@ public class HealthCareDataSync {
             try {
                 ContentValues value = new ContentValues();
                 json = array.getJSONObject(i);
-                String id = json.getString("id");
-                String nameEn = json.getString("name_en");
-                String nameAr = json.getString("name_ar");
-                value.put(COLUMN_ID, id);
-                value.put(COLUMN_NAME_EN, nameEn);
-                value.put(COLUMN_NAME_AR, nameAr);
+                for (String COLUMN_NAME : COLUMNS){
+                    String COLUMN_VALUE = json.getString(COLUMN_NAME);
+                    value.put(COLUMN_NAME,COLUMN_VALUE);
+                    Log.d(TAG, "value from Area server { " + COLUMN_NAME + " : " + COLUMN_VALUE +"}" );
+                }
+
                 values[i] = value;
 
-                Log.d(TAG, "value from Area server : " + id + "  " + nameEn + "  " + nameAr);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
         if (values.length != 0) {
+            int numRowsDeleted = context.getContentResolver().delete(CONTENT_URI,null,null);
             numRowsInserted = context.getContentResolver().bulkInsert(CONTENT_URI, values);
         }
-        Log.d(TAG, "Inserted rows in table" + TABLE_NAME + " count = " + Integer.toString(numRowsInserted));
+        Log.d(TAG, "Inserted rows in table { " + TABLE_NAME + " } count = " + Integer.toString(numRowsInserted));
     }
 
 }
