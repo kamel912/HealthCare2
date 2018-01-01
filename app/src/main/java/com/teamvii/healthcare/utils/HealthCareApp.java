@@ -20,6 +20,10 @@ public class HealthCareApp extends Application {
             String language = sharedPreferences.getString(base.getString(R.string.preferences_language_key), base.getString(R.string.preferences_language_arabic_value));
             super.attachBaseContext(LocaleHelper.onAttach(base, language));
         }
+        else {
+            super.attachBaseContext(LocaleHelper.onAttach(base));
+        }
     }
+
 
 }

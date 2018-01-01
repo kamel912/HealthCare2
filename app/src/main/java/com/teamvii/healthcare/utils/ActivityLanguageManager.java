@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
  * Created by MK on 12/30/2017.
  */
 
-public class ActivityManager extends AppCompatActivity {
+public class ActivityLanguageManager extends AppCompatActivity {
 
     public String defaultLanguage;
 

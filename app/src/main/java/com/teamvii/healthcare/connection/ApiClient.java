@@ -1,11 +1,7 @@
 package com.teamvii.healthcare.connection;
 
-import android.content.Context;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.teamvii.healthcare.utils.ActivityManager;
-import com.teamvii.healthcare.utils.LocaleHelper;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
